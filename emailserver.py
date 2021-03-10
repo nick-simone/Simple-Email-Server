@@ -7,7 +7,7 @@ from requests.models import Response
 app = Flask(__name__)
 
 class EmailClientFactory:
-    def getEmailClient(self, from_address, to_address, subject, body_text, body_html):
+    def get_email_client(self, from_address, to_address, subject, body_text, body_html):
         
         with open("config.json", "r") as f:
             config = json.load(f)
@@ -93,7 +93,7 @@ def send_email():
     cur.close()
 
     emailClientFactory = EmailClientFactory()
-    client = emailClientFactory.getEmailClient(from_address, to_address, subject, body_text, body_html)
+    client = emailClientFactory.get_email_client(from_address, to_address, subject, body_text, body_html)
     response = client.send_email()
 
     return response.json()
